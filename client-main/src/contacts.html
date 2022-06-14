@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Page</title>
+    <link rel="icon"
+          href="./images/MarsPads-logo.png"
+          type="image/gif" sizes="16x16"
+    >
+    <link rel="stylesheet" type="text/css" href="./assets/sass/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/sass/styleVertical.css">
+    <link rel="stylesheet" type="text/css" href="./assets/sass/animatedbackground.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <img alt="go back" id="back" src="./assets/images/back_icon.png">
+    <h1>Contacts</h1>
+    <img alt="add friend" id="addfriend" src="./assets/images/ContactIcon.png">
+</header>
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+<main>
+    <div id="searchContainer">
+        <form action="#" method="get">
+            <label for="search">
+                <input type="text" placeholder="Search.." name="search" id="search">
+            </label>
+        </form>
+    </div>
+    <div id="contactList">
+        <ul id="ulContactList">
+
+        </ul>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vertx/3.9.4/vertx-eventbus.min.js"></script>
+<script src="./assets/js/eb.js"></script>
+<script src="./assets/js/api.js"></script>
+<script src="./assets/js/contactPage.js"></script>
+<script src="./assets/js/checkForScreenSize.js"></script>
+</body>
+</html>

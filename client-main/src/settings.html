@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mars 17: MarsPad</title>
+    <link rel="icon"
+          href="assets/images/MarsPads-logo.png"
+          type="image/gif" sizes="16x16"
+    >
+    <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/settingsPage.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/navigation.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/audioOverlay.css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
+
+</head>
+<body>
+
+<nav>
+    <input type="checkbox" id="menuToggle">
+    <label id="menu" for="menuToggle"><span id="closeSpan">Close Menu</span><span
+            id="menuSpan">&#9776;&nbsp;Menu </span></label>
+    <ul>
+        <li><a id="indexNav" href="index.html">Home</a></li>
+        <li><a id="contactsNav" href="contacts.html">Contacts</a></li>
+        <li><a id="settingsNav" href="settings.html">Settings</a></li>
+    </ul>
+</nav>
+
+<div id="container">
+    <section id="settingsPage">
+        <h1>Settings:</h1>
+        <h2 id="contactid">temp</h2>
+        <ul>
+            <li>Software version: 0.12.04</li>
+            <li>Model name: Marspad V1</li>
+            <li>Warranty ends: 28/10/2053</li>
+            <li>Battery percentage: currently charging...</li>
+            <li>Number of charge cycles: 5633</li>
+        </ul>
+
+
+    </section>
+    <div class="battery"></div>
+
+</div>
+
+<div id="barStyle">
+
+    <p id="progress"> Update available!<span id="number"></span> <span id="info">&#9432;</span></p>
+
+    <div class="barDivColor">
+        <div id="progressBar" class="loadingBarColor">
+        </div>
+    </div>
+
+
+    <button id="startUpdate" class="buttonOverlay">Update Software</button>
+</div>
+
+<script src="assets/js/settingsPage.js"></script>
+<script src="assets/js/checkForScreenSize.js"></script>
+</body>
+</html>
