@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "dc9e782a-0c60-416c-914b-173fa28da9ae",
+		"name": "Mars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get user contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-ii.ti.howest.be/mars-17/api/user/22/contacts",
+					"protocol": "https",
+					"host": [
+						"project-ii",
+						"ti",
+						"howest",
+						"be"
+					],
+					"path": [
+						"mars-17",
+						"api",
+						"user",
+						"22",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-ii.ti.howest.be/mars-17/api/user/22",
+					"protocol": "https",
+					"host": [
+						"project-ii",
+						"ti",
+						"howest",
+						"be"
+					],
+					"path": [
+						"mars-17",
+						"api",
+						"user",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get list of chatid's and user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-ii.ti.howest.be/mars-17/api/user/22/chats",
+					"protocol": "https",
+					"host": [
+						"project-ii",
+						"ti",
+						"howest",
+						"be"
+					],
+					"path": [
+						"mars-17",
+						"api",
+						"user",
+						"22",
+						"chats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chats with user X",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://project-ii.ti.howest.be/mars-17/api/create/233",
+					"protocol": "https",
+					"host": [
+						"project-ii",
+						"ti",
+						"howest",
+						"be"
+					],
+					"path": [
+						"mars-17",
+						"api",
+						"create",
+						"233"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add contact X to user Y",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://project-ii.ti.howest.be/mars-17/api/user/22/contacts/add/233",
+					"protocol": "https",
+					"host": [
+						"project-ii",
+						"ti",
+						"howest",
+						"be"
+					],
+					"path": [
+						"mars-17",
+						"api",
+						"user",
+						"22",
+						"contacts",
+						"add",
+						"233"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove contact",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://project-ii.ti.howest.be/mars-17/api/user/22/contacts/remove/2",
+					"protocol": "https",
+					"host": [
+						"project-ii",
+						"ti",
+						"howest",
+						"be"
+					],
+					"path": [
+						"mars-17",
+						"api",
+						"user",
+						"22",
+						"contacts",
+						"remove",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

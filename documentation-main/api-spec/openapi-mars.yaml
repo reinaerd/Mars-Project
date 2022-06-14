@@ -1,0 +1,328 @@
+openapi: 3.0.3
+info:
+  title: 'MarsPads'
+  description: 'API spec for the MarsPads application'
+  version: 1.0.1
+servers:
+  - url: https://project-ii.ti.howest.be/mars-17
+    description: 'Public API'
+  - url: http://localhost:8089/
+    description: 'Local API'
+
+paths:
+  /api/create/{mid}:
+    post:
+      summary: create a user
+      description: Create a user by sending over their marsID, and receive your contactID
+      operationId: createUser
+      parameters:
+        - in: path
+          name: mid
+          schema:
+            type: integer
+            minimum: 1
+          required: true
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/account"
+        '400':
+          description: Bad request
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  failure:
+                    type: integer
+                    example: 400
+                  cause:
+                    type: string
+                    example: "Could not create user"
+                
+
+  /api/user/{mid}:
+    get:
+      summary: get user info
+      description: Get user info with marsID
+      operationId: getUser
+      parameters:
+        - in: path
+          name: mid
+          schema:
+            type: integer
+            minimum: 1
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/account"
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  failure:
+                    type: integer
+                    example: 400
+                  cause:
+                    type: string
+                    example: Error retrieving user
+  /api/user/{mid}/contacts:
+    get:
+      summary: get contacts
+      description: Get all contacts from a specifc marsid
+      operationId: getContacts
+      parameters:
+        - in: path
+          name: mid
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+      responses:
+        '200':
+          description: array of contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: "#/components/schemas/contact"
+  /api/user/{mid}/contacts/add/{contactid}:
+    post:
+      summary: add a contact to your list
+      description: add a contact to your list using their contactID
+      operationId: addContact
+      parameters:
+        - name: mid
+          in: path
+          description: the marsid of the account you want to add the contactID to
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+        - name: contactid
+          in: path
+          description: the contactid you want to add to the account
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response: 
+                    type: string
+                    example: Added contact
+        '400':
+          description: Bad request. mid and contactID must be an integer, larger than 0 and unique.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response: 
+                    type: string
+                    example: Could not add contact
+  /api/user/{mid}/contacts/remove/{contactid}:
+    delete:
+      summary: remove a contact from your list
+      description: remove a contact from your list using their contactID
+      operationId: deleteContact
+      parameters:
+        - name: mid
+          in: path
+          description: the marsid of the account you want to remove the friend from
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+        - name: contactid
+          in: path
+          description: the contactid you want to remove.
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+      responses:
+        '201':
+          description: Contact removed
+        '400':
+          description: Bad request. mid and contactID must be an integer, larger than 0 and unique.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  failure:
+                    type: integer
+                    example: 400
+                  cause:
+                    type: string
+                    example: Could not remove contact
+  /api/user/{mid}/chats:
+    get:
+      summary: get a list of all chatid's and their corresponding user
+      description: get all chats from a user with their marsID
+      operationId: getChatids
+      parameters:
+        - in: path
+          name: mid
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/chats"
+  /api/user/{mid}/chats/{chatid}:
+    get:
+      summary: get a list of all chat messages
+      description: get an array containing all chat messages from a chat with a specific user.
+      operationId: getMessages
+      parameters:
+        - in: path
+          name: mid
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+        - in: path
+          name: chatid
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/message"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  failure:
+                    type: integer
+                    example: 400
+                  cause:
+                    type: string
+                    example: Could not retrieve messages
+
+  /api/user/{mid}/information:
+    get:
+      summary: get basic app information like friends near you, etc. with your marsid
+      description: basic information
+      operationId: getInformation
+      parameters:
+        - in: path
+          name: mid
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema: 
+                type: object
+                $ref: "#/components/schemas/information"
+
+components:
+  schemas:
+    account:
+      type: object
+      properties:
+        marsID:
+          type: integer
+          example: 3
+        name:
+          type: string
+          example: John Doe
+        contactID:
+          type: integer
+          example: 2
+    contact:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        marsID:
+          type: integer
+          example: -1
+        contactID:
+          type: integer
+          example: 2
+    message:
+      type: object
+      properties:
+        chatid:
+          type: integer
+          example: 1234
+        sender:
+          type: string
+          example: John
+        timestamp: 
+          type: string
+          example: "2021-11-10 08:30:00"
+        content:
+          type: string
+          example: "Hello there!"
+    chats:
+      type: object
+      properties:
+        contactID:
+          description: the contactid of the person the chat is with
+          type: integer
+          example: 1
+        chatid:
+          description: the chatid of the chat that you can use to retrieve the chat logs
+          type: integer
+          example: 101
+        username:
+          type: string
+          example: "Freddie"
+    information:
+      type: object
+      properties:
+        friends near you: 
+          type: integer
+          example: 4
+        total friends:
+          type: integer
+          example: 102
+        closest friend in meters:
+          type: integer
+          example: 24
